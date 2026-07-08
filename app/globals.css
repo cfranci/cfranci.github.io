@@ -36,24 +36,30 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outlin
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 .mono { font-family: var(--font-mono), monospace; }
 
-/* ---------- cursor glow + ring ---------- */
+/* ---------- gavel mouse (from the Josh Firm build) ---------- */
+html, body, * {
+  cursor: url('/assets/hgm-cursor.png') 0 16, auto;
+}
+a, button, [role="button"], input[type="submit"], .chip, [onclick], label[for], select, summary,
+.urlbar, .tile a, .ledger a, .manifest a {
+  cursor: url('/assets/cgm-cursor.png') 0 16, pointer;
+}
+*:active,
+a:active, button:active, .chip:active {
+  cursor: url('/assets/gm-cursor.png') 0 16, pointer;
+}
+input[type="text"], input[type="email"], textarea {
+  cursor: url('/assets/hgm-cursor.png') 0 16, text;
+}
+
+/* ---------- cursor glow ---------- */
 .glow {
   position: fixed; left: 0; top: 0; width: 640px; height: 640px;
   margin: -320px 0 0 -320px; pointer-events: none; z-index: 0;
   background: radial-gradient(circle, rgba(255, 122, 26, 0.09) 0%, rgba(255, 122, 26, 0.045) 32%, transparent 62%);
   will-change: transform;
 }
-.ring {
-  position: fixed; left: 0; top: 0; width: 30px; height: 30px;
-  margin: -15px 0 0 -15px; pointer-events: none; z-index: 9999;
-  border: 1.5px solid rgba(255, 122, 26, 0.75); border-radius: 50%;
-  will-change: transform; transition: width .18s, height .18s, margin .18s, border-color .18s;
-}
-body[data-hovering="true"] .ring {
-  width: 48px; height: 48px; margin: -24px 0 0 -24px;
-  border-color: var(--orange);
-}
-@media (hover: none) { .glow, .ring { display: none; } }
+@media (hover: none) { .glow { display: none; } }
 
 /* ---------- scroll progress ---------- */
 .progress {
@@ -142,7 +148,8 @@ body[data-hovering="true"] .ring {
 .filterbar-inner::-webkit-scrollbar { display: none; }
 .chip {
   font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: .08em;
-  padding: 6px 14px; border-radius: 99px; white-space: nowrap; cursor: pointer;
+  padding: 6px 14px; border-radius: 99px; white-space: nowrap;
+  cursor: url('/assets/cgm-cursor.png') 0 16, pointer;
   border: 1px solid var(--glass-border); background: var(--glass); color: var(--muted);
   transition: all .15s ease;
 }
@@ -296,8 +303,7 @@ section[data-band].hidden-band { display: none; }
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .glow, .ring { display: none; }
-  .marquee-track { animation: none; }
+  .glow,   .marquee-track { animation: none; }
   .live b, .manifest .status.up::before { animation: none; }
   .fx { opacity: 1; transform: none; transition: none; }
   .btn, .frame, .tile, .ledger li, .chip, .tags span { transition: none; }

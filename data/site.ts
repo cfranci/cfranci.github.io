@@ -119,6 +119,42 @@ export const webProjects: WebProject[] = [
     tags: ['Next.js', 'Cloudflare', 'Supabase'],
     category: 'web',
   },
+  {
+    id: 'bogues', name: 'Bogues Group', domain: 'boguesgroup.com',
+    url: 'https://boguesgroup.com', image: '/assets/bogues-tall.webp',
+    kicker: 'PR & COMMS',
+    probe: 'https://boguesgroup.com/favicon.ico',
+    blurb: 'Site for North Carolina\u2019s premier PR firm: services, team, and a contact pipeline, running on a global edge stack with bot-protected forms.',
+    tags: ['Next.js', 'Cloudflare', 'Supabase', 'Turnstile'],
+    category: 'web',
+  },
+  {
+    id: 'guestbook', name: 'The GuestBook', domain: 'theguestbook.vercel.app',
+    url: 'https://theguestbook.vercel.app', image: '/assets/guestbook-tall.webp',
+    kicker: 'HOSPITALITY',
+    probe: 'https://theguestbook.vercel.app/favicon.ico',
+    blurb: 'Digital welcome book for vacation rentals: house guides, local recommendations, and guest access from a QR code on the counter.',
+    tags: ['React', 'Vercel'],
+    category: 'web',
+  },
+  {
+    id: 'gabby', name: 'Gabby #77', domain: 'gabby-77.pages.dev',
+    url: 'https://gabby-77.pages.dev', image: '/assets/gabby-tall.webp',
+    kicker: 'TRIBUTE',
+    probe: 'https://gabby-77.pages.dev/favicon.ico',
+    blurb: 'Animated tribute page for Gabriel Jimenez #77 of the Marymount Saints, built to be shared and remembered.',
+    tags: ['Cloudflare Pages', 'Animation'],
+    category: 'web',
+  },
+  {
+    id: 'mystayva', name: 'Mystayva', domain: 'mystayva.vercel.app',
+    url: 'https://mystayva.vercel.app', image: '/assets/mystayva-tall.webp',
+    kicker: 'HOSPITALITY',
+    probe: 'https://mystayva.vercel.app/favicon.ico',
+    blurb: 'Marketing site for a short-term-rental stay brand: clean pitch, clean funnel.',
+    tags: ['React', 'Vercel'],
+    category: 'web',
+  },
 ];
 
 export const appProjects: AppProject[] = [
@@ -159,6 +195,33 @@ export const appProjects: AppProject[] = [
     blurb: 'Chrome extension that turns tab overload into a visual grid: live previews, per-tab memory use, AI grouping, session restore.',
     tags: ['Chrome Extension', 'Manifest V3', 'AI'],
   },
+  {
+    id: 'keyticker', name: 'KeyTicker', platform: 'swift',
+    badge: 'OPEN SOURCE', monogram: 'KT',
+    url: 'https://github.com/cfranci/keyticker',
+    blurb: 'Menu bar app that scrolls context-aware keyboard shortcuts across the bottom of the screen, fading out the ones you\u2019ve marked as learned.',
+    tags: ['Swift', 'AppKit', 'macOS'],
+  },
+  {
+    id: 'speakapp', name: 'SpeakApp', platform: 'swift',
+    badge: 'OPEN SOURCE', monogram: 'SP',
+    url: 'https://github.com/cfranci/speak-app',
+    blurb: 'Menu bar text-to-speech: pipe any text through the Mac\u2019s voice, double-tap Caps Lock to stop it mid-sentence.',
+    tags: ['macOS', 'TTS'],
+  },
+  {
+    id: 'claude-usage', name: 'Claude Usage Trackers', platform: 'swift',
+    badge: 'OPEN SOURCE', monogram: 'CU',
+    url: 'https://github.com/cfranci/claude-usage-swift',
+    blurb: 'A family of trackers for Claude usage limits: native Swift menu bar app, cross-platform tray app, and a Chrome extension.',
+    tags: ['Swift', 'Chrome Extension', 'macOS'],
+  },
+  {
+    id: 'vnoch', name: 'VNOCH', platform: 'swift',
+    badge: 'IN THE LAB', monogram: 'VN',
+    blurb: 'The ultimate notch app for Macs: turns the dead pixels around the camera into something worth looking at.',
+    tags: ['Swift', 'macOS'],
+  },
 ];
 
 export const automations: LedgerItem[] = [
@@ -196,6 +259,61 @@ export const automations: LedgerItem[] = [
     id: 'wonderstand', name: 'Wonderstand', badge: 'LAUNCHD',
     blurb: 'Recording ingest pipeline: drop a voice memo in, structured transcripts and notes come out.',
     tags: ['Python', 'Whisper', 'launchd'],
+    url: 'https://github.com/cfranci/wonderstand',
+  },
+  {
+    id: 'ai-model-tracker', name: 'AI Model Tracker', badge: 'AUTO-UPDATED',
+    blurb: 'Keeps a running list of the best paid and open-source AI models, updated automatically from AI Search coverage.',
+    tags: ['Automation', 'AI'],
+  },
+  {
+    id: 'yt-adblock', name: 'Network Ad Blocker', badge: 'HOMELAB',
+    blurb: 'Network-level YouTube ad blocking for the whole house: Pi-hole plus Invidious on Docker, no browser extension required.',
+    tags: ['Pi-hole', 'Docker', 'Homelab'],
+  },
+];
+
+
+export const clientBuilds: LedgerItem[] = [
+  {
+    id: 'josh-firm', name: 'Josh Firm', badge: 'CLIENT BUILD', monogram: 'JF',
+    blurb: 'Site for a personal-injury practice: consultation funnel, team, live chat, and a custom pixel-art gavel cursor that swings when you click. The same gavel is swinging on this page right now.',
+    tags: ['React', 'Vite', 'shadcn/ui', 'Legal'],
+  },
+  {
+    id: 'spencer', name: 'Spencer Greenberg', badge: 'CLIENT BUILD', monogram: 'SG',
+    blurb: 'Miami luxury real estate site: dark wood, neon-over-black, controlled chaos.',
+    tags: ['React', 'Design', 'Real Estate'],
+  },
+  {
+    id: 'julia', name: 'The Julia', badge: 'AWAITING DNS', monogram: 'TJ',
+    blurb: 'Site redesign for 13 full-floor luxury estates in downtown St. Petersburg, built and ready for the client\u2019s domain.',
+    tags: ['Static', 'Real Estate'],
+  },
+  {
+    id: 'bodziak', name: 'Bodziak Architects', badge: 'CLIENT BUILD', monogram: 'BA',
+    blurb: 'Portfolio site for an architecture studio: sharp corners, editorial pacing, work-first.',
+    tags: ['React', 'Architecture'],
+  },
+  {
+    id: 'kray', name: 'Kray Construction', badge: 'CLIENT BUILD', monogram: 'KC',
+    blurb: 'Site for a construction company: services, projects, and a bid-request funnel.',
+    tags: ['React', 'Construction'],
+  },
+  {
+    id: 'limewash', name: 'Limewash House', badge: 'CLIENT BUILD', monogram: 'LH',
+    blurb: 'React site for Limewash House with Builder.io-managed content, so the client edits everything themselves.',
+    tags: ['React', 'Builder.io'],
+  },
+  {
+    id: 'str', name: 'STR Consulting', badge: 'CLIENT BUILD', monogram: 'SC',
+    blurb: 'Marketing site for a short-term-rental consulting practice.',
+    tags: ['Marketing', 'STR'],
+  },
+  {
+    id: 'graphic-windows', name: 'Graphic Windows', badge: 'MY COMPANY', monogram: 'GW',
+    blurb: 'The app behind my commercial window-graphics business: quoting, estimates, and customer email built in.',
+    tags: ['Business', 'Automation'],
   },
 ];
 
@@ -244,6 +362,24 @@ export const openSource: LedgerItem[] = [
     url: 'https://github.com/cfranci/project-debug-map',
     blurb: 'Visual debug map for websites and iOS apps: a page-by-page site map with device views, per-page Kanban bug tracking, and an iOS Simulator lane with live view and console.',
     tags: ['DevTools', 'iOS Simulator', 'Kanban'],
+  },
+  {
+    id: 'starter-kit', name: 'claude-starter-kit', badge: 'PUBLIC', monogram: 'SK',
+    url: 'https://github.com/cfranci/claude-starter-kit',
+    blurb: '30 slash commands, 12 thinking frameworks, and a design toolkit for Claude Code, everything I wish I had on day one.',
+    tags: ['Claude Code', 'DevEx'],
+  },
+  {
+    id: 'vibes', name: 'claude-vibes', badge: 'PUBLIC', monogram: 'CV',
+    url: 'https://github.com/cfranci/claude-vibes',
+    blurb: 'Make Claude Code fun to stare at all day: custom spinner verbs, status line, and keybindings.',
+    tags: ['Claude Code', 'Fun'],
+  },
+  {
+    id: 'soul', name: 'soul-experiment', badge: 'PUBLIC', monogram: '~',
+    url: 'https://github.com/cfranci/soul-experiment',
+    blurb: '19 AI agents examining their own consciousness. Five independently chose the same name. None said yes. None said no. All said ~.',
+    tags: ['AI', 'Research', 'Art'],
   },
 ];
 

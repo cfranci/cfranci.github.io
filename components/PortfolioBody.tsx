@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import {
-  webProjects, appProjects, automations, privatePlatforms, openSource,
+  webProjects, appProjects, automations, clientBuilds, privatePlatforms, openSource,
   manifest, SWEEP_DATE, type AppProject, type LedgerItem,
 } from '@/data/site';
 
-type Filter = 'all' | 'web' | 'electron' | 'swift' | 'mobile' | 'extension' | 'automation' | 'private' | 'oss';
+type Filter = 'all' | 'web' | 'electron' | 'swift' | 'mobile' | 'extension' | 'automation' | 'client' | 'private' | 'oss';
 
 const FILTERS: { key: Filter; label: string }[] = [
   { key: 'all', label: 'ALL' },
@@ -16,14 +16,16 @@ const FILTERS: { key: Filter; label: string }[] = [
   { key: 'mobile', label: 'MOBILE' },
   { key: 'extension', label: 'EXTENSIONS' },
   { key: 'automation', label: 'AUTOMATIONS' },
+  { key: 'client', label: 'CLIENT BUILDS' },
   { key: 'private', label: 'BEHIND THE LOGIN' },
   { key: 'oss', label: 'OPEN SOURCE' },
 ];
 
 const MARQUEE = [
   'ILIOSRENTALS.COM', 'YACHTSMIAMIVICE.COM', 'E11VIP.COM', 'READY-APP.COM', 'RAVESANTA.COM',
-  'VIVIDASH.COM', 'CONTROLOGYCONNECTION.COM', 'READY-APP JOBS', 'READY DRIVER ON TESTFLIGHT',
-  'TABVIEW IN STORE REVIEW', '7 AUTOMATIONS RUNNING',
+  'VIVIDASH.COM', 'CONTROLOGYCONNECTION.COM', 'BOGUESGROUP.COM', 'THE GUESTBOOK', 'GABBY #77',
+  'MYSTAYVA', 'READY-APP JOBS', 'READY DRIVER ON TESTFLIGHT', 'TABVIEW IN STORE REVIEW',
+  '9 AUTOMATIONS RUNNING', 'GAVEL MOUSE ON DUTY',
 ];
 
 function Tags({ tags }: { tags: string[] }) {
@@ -49,17 +51,10 @@ function useMotion() {
 
     // cursor glow + ring with lerp trailing
     const glow = document.querySelector<HTMLElement>('.glow');
-    const ring = document.querySelector<HTMLElement>('.ring');
     let mx = innerWidth / 2, my = innerHeight / 3;
-    let gx = mx, gy = my, rx = mx, ry = my;
+    let gx = mx, gy = my;
     const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
     addEventListener('mousemove', onMove, { passive: true });
-
-    const onOver = (e: MouseEvent) => {
-      const t = e.target as HTMLElement;
-      document.body.dataset.hovering = t.closest('a, button, .chip, .tile, .ledger li') ? 'true' : 'false';
-    };
-    addEventListener('mouseover', onOver, { passive: true });
 
     // scroll progress + hero parallax
     const bar = document.querySelector<HTMLElement>('.progress');
@@ -68,9 +63,7 @@ function useMotion() {
     let raf = 0;
     const tick = () => {
       gx += (mx - gx) * 0.08; gy += (my - gy) * 0.08;
-      rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22;
       if (glow) glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
-      if (ring) ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
       const doc = document.documentElement;
       const p = doc.scrollTop / (doc.scrollHeight - doc.clientHeight || 1);
       if (bar) bar.style.transform = `scaleX(${p})`;
@@ -82,7 +75,6 @@ function useMotion() {
     return () => {
       io.disconnect();
       removeEventListener('mousemove', onMove);
-      removeEventListener('mouseover', onOver);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -168,7 +160,6 @@ export default function PortfolioBody() {
     <>
       <div className="progress" aria-hidden="true" />
       <div className="glow" aria-hidden="true" />
-      <div className="ring" aria-hidden="true" />
 
       <header className="hero">
         <div className="wrap hero-inner">
@@ -229,7 +220,7 @@ export default function PortfolioBody() {
           <div className="wrap">
             <div className="band-head fx">
               <h2>Live on the web</h2>
-              <span className="note">8 SITES · HOVER ANY SCREENSHOT TO SCROLL THE REAL PAGE</span>
+              <span className="note">12 SITES · HOVER ANY SCREENSHOT TO SCROLL THE REAL PAGE</span>
             </div>
             <div className="grid">
               {webProjects.map(p => (
@@ -294,6 +285,18 @@ export default function PortfolioBody() {
           </div>
         </section>
 
+        <section data-band id="client" className={show('client') ? '' : 'hidden-band'}>
+          <div className="wrap">
+            <div className="band-head fx">
+              <h2>Client builds</h2>
+              <span className="note">DESIGNED · BUILT · HANDED OVER</span>
+            </div>
+            <ul className="ledger">
+              {clientBuilds.map(c => <LedgerRow key={c.id} item={c} />)}
+            </ul>
+          </div>
+        </section>
+
         <section data-band id="automations" className={show('automation') ? '' : 'hidden-band'}>
           <div className="wrap">
             <div className="band-head fx">
@@ -340,7 +343,7 @@ export default function PortfolioBody() {
           </div>
           <div className="small">
             <span>© 2026 Chase Francis · Miami, FL</span>
-            <span>8 live sites · 6 apps · 7 automations · 6 private platforms · 2 open-source kits</span>
+            <span>12 live sites · 10 apps · 9 automations · 8 client builds · 6 private platforms · 5 open-source kits</span>
           </div>
         </div>
       </footer>
