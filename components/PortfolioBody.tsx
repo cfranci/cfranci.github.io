@@ -168,6 +168,19 @@ function LedgerRow({ item }: { item: LedgerItem }) {
   );
 }
 
+const COUNTS: Record<Filter, number> = {
+  all: webProjects.length + appProjects.length + automations.length + clientBuilds.length + privatePlatforms.length + openSource.length,
+  web: webProjects.length,
+  electron: appProjects.filter(a => a.platform === 'electron').length,
+  swift: appProjects.filter(a => a.platform === 'swift').length,
+  mobile: appProjects.filter(a => a.platform === 'mobile').length,
+  extension: appProjects.filter(a => a.platform === 'extension').length,
+  automation: automations.length,
+  client: clientBuilds.length,
+  private: privatePlatforms.length,
+  oss: openSource.length,
+};
+
 export default function PortfolioBody() {
   const [filter, setFilter] = useState<Filter>('all');
   const up = useLiveChecks();
@@ -184,7 +197,10 @@ export default function PortfolioBody() {
       <header className="hero">
         <div className="wrap hero-inner">
           <p className="eyebrow">CHASE FRANCIS &nbsp;·&nbsp; MIAMI, FL</p>
-          <h1>Everything here is live<span className="dot">.</span></h1>
+          <h1>
+            <span className="line"><span>Everything here</span></span>
+            <span className="line"><span>is live<span className="dot">.</span></span></span>
+          </h1>
           <p className="lede">
             I build and launch products fast: hospitality platforms for Miami&apos;s biggest venues, logistics
             software for modern freight, desktop and mobile apps, automations that run while I sleep, and tools
@@ -229,7 +245,7 @@ export default function PortfolioBody() {
               className={`chip${filter === f.key ? ' active' : ''}`}
               onClick={() => setFilter(f.key)}
             >
-              {f.label}
+              {f.label}<span className="n">{COUNTS[f.key]}</span>
             </button>
           ))}
         </div>
@@ -238,6 +254,7 @@ export default function PortfolioBody() {
       <main>
         <section data-band id="web" className={show('web') ? '' : 'hidden-band'}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">WEB</span>
             <div className="band-head fx">
               <h2>Live on the web</h2>
               <span className="note">11 SITES · HOVER ANY SCREENSHOT TO SCROLL THE REAL PAGE</span>
@@ -267,8 +284,15 @@ export default function PortfolioBody() {
           </div>
         </section>
 
+        <section className="statement" aria-label="How fast things ship">
+          <div className="wrap">
+            <p className="fx">Idea on Monday. <b>Live by Friday<span className="dot">.</span></b></p>
+          </div>
+        </section>
+
         <section data-band id="apps" className={appsVisible ? '' : 'hidden-band'}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">APPS</span>
             <div className="band-head fx">
               <h2>Apps &amp; tools</h2>
               <span className="note">ELECTRON · SWIFT · MOBILE · EXTENSIONS</span>
@@ -307,6 +331,7 @@ export default function PortfolioBody() {
 
         <section data-band id="client" className={show('client') ? '' : 'hidden-band'}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">CLIENTS</span>
             <div className="band-head fx">
               <h2>Client builds</h2>
               <span className="note">DESIGNED · BUILT · HANDED OVER</span>
@@ -319,6 +344,7 @@ export default function PortfolioBody() {
 
         <section data-band id="automations" className={show('automation') ? '' : 'hidden-band'}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">AUTOS</span>
             <div className="band-head fx">
               <h2>Automations</h2>
               <span className="note">RUNNING WHILE I SLEEP</span>
@@ -331,6 +357,7 @@ export default function PortfolioBody() {
 
         <section data-band id="private" className={`private-band${show('private') ? '' : ' hidden-band'}`}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">PRIVATE</span>
             <div className="band-head fx">
               <h2>Behind the login</h2>
               <span className="note">IN PRODUCTION · NOT PUBLIC</span>
@@ -343,6 +370,7 @@ export default function PortfolioBody() {
 
         <section data-band id="oss" className={show('oss') ? '' : 'hidden-band'}>
           <div className="wrap">
+            <span className="ghost" aria-hidden="true">SOURCE</span>
             <div className="band-head fx">
               <h2>Open source</h2>
               <span className="note">CLONE &amp; RUN</span>
@@ -355,6 +383,7 @@ export default function PortfolioBody() {
       </main>
 
       <footer className="foot">
+        <img className="big-gavel" src="/assets/gm-cursor.png" alt="" aria-hidden="true" title="Order in the court." />
         <div className="wrap">
           <h2 className="fx">Have something that needs to exist by Friday<span className="dot">?</span></h2>
           <div className="hero-links fx">
