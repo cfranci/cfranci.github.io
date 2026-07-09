@@ -60,7 +60,7 @@ export const webProjects: WebProject[] = [
     category: 'web',
   },
   {
-    id: 'yachts', name: 'Miami Vice Yachts', domain: 'yachtsmiamivice.com',
+    id: 'yachts', name: 'Yachts MiamiVice', domain: 'yachtsmiamivice.com',
     url: 'https://yachtsmiamivice.com', image: '/assets/yachts-tall.webp',
     kicker: 'HOSPITALITY',
     blurb: 'Charter site for a Miami yacht fleet. Guests browse by experience, sandbar days, sunset cruises, party charters, instead of digging through boat specs.',
@@ -68,7 +68,7 @@ export const webProjects: WebProject[] = [
     category: 'web',
   },
   {
-    id: 'e11vip', name: 'E11VIP Service', domain: 'e11vip.com',
+    id: 'e11vip', name: 'E11VIP', domain: 'e11vip.com',
     url: 'https://e11vip.com', image: '/assets/e11vip-tall.webp',
     kicker: 'HOSPITALITY',
     blurb: 'Service-request portal connecting residence owners with the maintenance team behind them. Sign in with Google or an email link; every request is tracked from report to resolution.',
@@ -117,15 +117,6 @@ export const webProjects: WebProject[] = [
     kicker: 'EDUCATION',
     blurb: 'Certification platform for Pilates teacher training: program pages, enrollment, and the path from student to certified instructor.',
     tags: ['Next.js', 'Cloudflare', 'Supabase'],
-    category: 'web',
-  },
-  {
-    id: 'bogues', name: 'Bogues Group', domain: 'boguesgroup.com',
-    url: 'https://boguesgroup.com', image: '/assets/bogues-tall.webp',
-    kicker: 'PR & COMMS',
-    probe: 'https://boguesgroup.com/favicon.ico',
-    blurb: 'Site for North Carolina\u2019s premier PR firm: services, team, and a contact pipeline, running on a global edge stack with bot-protected forms.',
-    tags: ['Next.js', 'Cloudflare', 'Supabase', 'Turnstile'],
     category: 'web',
   },
   {

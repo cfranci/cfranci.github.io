@@ -23,7 +23,7 @@ const FILTERS: { key: Filter; label: string }[] = [
 
 const MARQUEE = [
   'ILIOSRENTALS.COM', 'YACHTSMIAMIVICE.COM', 'E11VIP.COM', 'READY-APP.COM', 'RAVESANTA.COM',
-  'VIVIDASH.COM', 'CONTROLOGYCONNECTION.COM', 'BOGUESGROUP.COM', 'THE GUESTBOOK', 'GABBY #77',
+  'VIVIDASH.COM', 'CONTROLOGYCONNECTION.COM', 'THE GUESTBOOK', 'GABBY #77',
   'MYSTAYVA', 'READY-APP JOBS', 'READY DRIVER ON TESTFLIGHT', 'TABVIEW IN STORE REVIEW',
   '9 AUTOMATIONS RUNNING', 'GAVEL MOUSE ON DUTY',
 ];
@@ -45,7 +45,10 @@ function useMotion() {
       entries => entries.forEach(e => e.target.classList.toggle('in', e.isIntersecting)),
       { rootMargin: '0px 0px -8% 0px' },
     );
-    document.querySelectorAll('.fx').forEach(el => io.observe(el));
+    document.querySelectorAll('.fx').forEach((el, i) => {
+      (el as HTMLElement).style.setProperty('--i', String(i % 8));
+      io.observe(el);
+    });
 
     if (reduced) return () => io.disconnect();
 
@@ -55,6 +58,22 @@ function useMotion() {
     let gx = mx, gy = my;
     const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
     addEventListener('mousemove', onMove, { passive: true });
+
+    // 3D tilt on frames and tiles
+    const tiltEls = document.querySelectorAll<HTMLElement>('.frame, .tile:not(.wide)');
+    const tiltHandlers: Array<[HTMLElement, (e: MouseEvent) => void, () => void]> = [];
+    tiltEls.forEach(el => {
+      const move = (e: MouseEvent) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(900px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-4px)`;
+      };
+      const leave = () => { el.style.transform = ''; };
+      el.addEventListener('mousemove', move, { passive: true });
+      el.addEventListener('mouseleave', leave);
+      tiltHandlers.push([el, move, leave]);
+    });
 
     // scroll progress + hero parallax
     const bar = document.querySelector<HTMLElement>('.progress');
@@ -75,6 +94,7 @@ function useMotion() {
     return () => {
       io.disconnect();
       removeEventListener('mousemove', onMove);
+      tiltHandlers.forEach(([el, move, leave]) => { el.removeEventListener('mousemove', move); el.removeEventListener('mouseleave', leave); });
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -220,7 +240,7 @@ export default function PortfolioBody() {
           <div className="wrap">
             <div className="band-head fx">
               <h2>Live on the web</h2>
-              <span className="note">12 SITES · HOVER ANY SCREENSHOT TO SCROLL THE REAL PAGE</span>
+              <span className="note">11 SITES · HOVER ANY SCREENSHOT TO SCROLL THE REAL PAGE</span>
             </div>
             <div className="grid">
               {webProjects.map(p => (
@@ -343,7 +363,7 @@ export default function PortfolioBody() {
           </div>
           <div className="small">
             <span>© 2026 Chase Francis · Miami, FL</span>
-            <span>12 live sites · 10 apps · 9 automations · 8 client builds · 6 private platforms · 5 open-source kits</span>
+            <span>11 live sites · 10 apps · 9 automations · 8 client builds · 6 private platforms · 5 open-source kits</span>
           </div>
         </div>
       </footer>
