@@ -60,6 +60,15 @@ export const webProjects: WebProject[] = [
     category: 'web',
   },
   {
+    id: 'shadowguard', name: 'Shadow Guard', domain: 'cfranci.github.io/shadow-guard',
+    url: 'https://cfranci.github.io/shadow-guard/', image: '/assets/shadowguard-tall.webp',
+    kicker: 'SECURITY',
+    probe: 'https://cfranci.github.io/shadow-guard/favicon.svg',
+    blurb: 'Cyber and MSP provider for buildings and offices, holding cybersecurity, managed IT, physical security, and network infrastructure to one standard. Pitch-black noir design with a living network-mesh hero, a stage-spotlight cursor, and a free-assessment lead funnel.',
+    tags: ['Vanilla JS', 'Canvas', 'Cloudflare Workers', 'SEO'],
+    category: 'web',
+  },
+  {
     id: 'yachts', name: 'Yachts MiamiVice', domain: 'yachtsmiamivice.com',
     url: 'https://yachtsmiamivice.com', image: '/assets/yachts-tall.webp',
     kicker: 'HOSPITALITY',
